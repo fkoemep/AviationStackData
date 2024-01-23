@@ -122,7 +122,9 @@ services:
 
 
   jupyter:
-    build: ./jupyter
+    build:
+      context: .
+      dockerfile: ./jupyter/Dockerfile
     restart: unless-stopped
     ports:
       - "8888:8888"
