@@ -43,6 +43,7 @@
 #                                Default: ''
 #
 # Feel free to modify this file to suit your needs.
+version: "3.8"
 ---
 x-airflow-common:
   &airflow-common
@@ -101,8 +102,8 @@ services:
       retries: 5
       start_period: 5s
     restart: always
-    secrets:
-      - db_password
+#    secrets:
+#      - db_password
 
   ## container created for storing data
   testfligoo:
@@ -116,8 +117,8 @@ services:
       - ${AIRFLOW_PROJ_DIR:-.}/sql/testfligoo_init_script.sql:/docker-entrypoint-initdb.d/testfligoo_init_script.sql
     hostname: postgres_testfligoo
     restart: always
-    secrets:
-      - db_password
+#    secrets:
+#      - db_password
 
 
   jupyter:
@@ -313,9 +314,9 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-secrets:
-   db_password:
-     file: ./secrets/password.txt
+#secrets:
+#   db_password:
+#     file: ./secrets/password.txt
 
 
 volumes:
